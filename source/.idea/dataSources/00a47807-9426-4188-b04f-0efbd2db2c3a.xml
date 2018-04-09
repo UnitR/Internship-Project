@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="studentsdb@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="studentsdb">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sakila"/>
+    <schema id="7" parent="1" name="sys"/>
+    <schema id="8" parent="1" name="world"/>
+    <table id="9" parent="2" name="courses">
+      <Comment>Таблица съдържаща информация за курсовете</Comment>
+    </table>
+    <table id="10" parent="2" name="specialities">
+      <Comment>Таблица с основна информация за специалностите. Всеки курс м</Comment>
+    </table>
+    <table id="11" parent="2" name="students">
+      <Comment>Таблица с основни данни за студентите</Comment>
+    </table>
+    <table id="12" parent="2" name="students_assessments">
+      <Comment>Таблица съдържаща информация за оценки на студент за конкрет</Comment>
+    </table>
+    <table id="13" parent="2" name="subjects">
+      <Comment>Таблица съдържаща основни данни за учебните дисциплини</Comment>
+    </table>
+    <table id="14" parent="2" name="users">
+      <Comment>Таблица съдържаща основна информация за потребителите в сист</Comment>
+    </table>
+    <column id="15" parent="9" name="course_id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="16" parent="9" name="course_name">
+      <Position>2</Position>
+      <Comment>Име на курса (Пример: Първи курс, Информатика задочно)</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <index id="17" parent="9" name="course_name_unique">
+      <ColNames>course_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="18" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>course_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="19" parent="9" name="course_name_unique">
+      <ColNames>course_name</ColNames>
+      <UnderlyingIndexName>course_name_unique</UnderlyingIndexName>
+    </key>
+    <column id="20" parent="10" name="speciality_id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="21" parent="10" name="speciality_name_long">
+      <Position>2</Position>
+      <Comment>Име на специалността (пълно)</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="22" parent="10" name="speciality_name_short">
+      <Position>3</Position>
+      <Comment>Име на специалността (кратко)</Comment>
+      <DataType>varchar(16)|0</DataType>
+    </column>
+    <index id="23" parent="10" name="speciality_name_long_UNIQUE">
+      <ColNames>speciality_name_long</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="24" parent="10" name="speciality_name_short_UNIQUE">
+      <ColNames>speciality_name_short</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="25" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>speciality_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="26" parent="10" name="speciality_name_long_UNIQUE">
+      <ColNames>speciality_name_long</ColNames>
+      <UnderlyingIndexName>speciality_name_long_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="27" parent="10" name="speciality_name_short_UNIQUE">
+      <ColNames>speciality_name_short</ColNames>
+      <UnderlyingIndexName>speciality_name_short_UNIQUE</UnderlyingIndexName>
+    </key>
+    <column id="28" parent="11" name="student_id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="29" parent="11" name="student_course_id">
+      <Position>2</Position>
+      <Comment>ИД на курса, в който е записан студента</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="30" parent="11" name="student_speciality_id">
+      <Position>3</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="31" parent="11" name="student_fname">
+      <Position>4</Position>
+      <Comment>Собствено име на студента</Comment>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="32" parent="11" name="student_lname">
+      <Position>5</Position>
+      <Comment>Фамилия на студента</Comment>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="33" parent="11" name="student_email">
+      <Position>6</Position>
+      <Comment>E-mail адрес на студента</Comment>
+      <DataType>varchar(64)|0</DataType>
+    </column>
+    <column id="34" parent="11" name="student_fnumber">
+      <Position>7</Position>
+      <Comment>Факултетен номер на студента</Comment>
+      <DataType>int(10) unsigned zerofill|0</DataType>
+      <DefaultExpression>&apos;0000000000&apos;</DefaultExpression>
+    </column>
+    <column id="35" parent="11" name="student_education_form">
+      <Position>8</Position>
+      <DataType>enum(&apos;Р&apos;, &apos;З&apos;, &apos;&apos;)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <index id="36" parent="11" name="student_course_id">
+      <ColNames>student_course_id</ColNames>
+    </index>
+    <index id="37" parent="11" name="student_email_UNIQUE">
+      <ColNames>student_email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="38" parent="11" name="student_name_fn_UNIQUE">
+      <ColNames>student_fname
+student_lname
+student_fnumber</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="39" parent="11" name="student_speciality_id">
+      <ColNames>student_speciality_id</ColNames>
+    </index>
+    <key id="40" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>student_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="41" parent="11" name="student_name_fn_UNIQUE">
+      <ColNames>student_fname
+student_lname
+student_fnumber</ColNames>
+      <UnderlyingIndexName>student_name_fn_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="42" parent="11" name="student_email_UNIQUE">
+      <ColNames>student_email</ColNames>
+      <UnderlyingIndexName>student_email_UNIQUE</UnderlyingIndexName>
+    </key>
+    <column id="43" parent="12" name="sa_id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="44" parent="12" name="sa_student_id">
+      <Position>2</Position>
+      <Comment>ИД на студент</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="45" parent="12" name="sa_subject_id">
+      <Position>3</Position>
+      <Comment>ИД на предмет</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="46" parent="12" name="sa_workload_lectures">
+      <Position>4</Position>
+      <Comment>Действително посетени часове хорарим за лекции (от студента)</Comment>
+      <DataType>tinyint(3) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="47" parent="12" name="sa_workload_exercises">
+      <Position>5</Position>
+      <Comment>Действително посетени хорариум часове за упражнения (от студента)</Comment>
+      <DataType>tinyint(3) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="48" parent="12" name="sa_assesment">
+      <Position>6</Position>
+      <Comment>Оценка на студента за конкретната дисциплина</Comment>
+      <DataType>tinyint(3) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="49" parent="12" name="sa_student_id">
+      <ColNames>sa_student_id</ColNames>
+    </index>
+    <index id="50" parent="12" name="sa_student_subject_UNIQUE">
+      <ColNames>sa_student_id
+sa_subject_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="51" parent="12" name="sa_subject_id">
+      <ColNames>sa_subject_id</ColNames>
+    </index>
+    <key id="52" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>sa_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="53" parent="12" name="sa_student_subject_UNIQUE">
+      <ColNames>sa_student_id
+sa_subject_id</ColNames>
+      <UnderlyingIndexName>sa_student_subject_UNIQUE</UnderlyingIndexName>
+    </key>
+    <column id="54" parent="13" name="subject_id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="55" parent="13" name="subject_name">
+      <Position>2</Position>
+      <Comment>Име на предмет</Comment>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="56" parent="13" name="subject_workload_lectures">
+      <Position>3</Position>
+      <Comment>Хорариум часове за лекции</Comment>
+      <DataType>smallint(5) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="57" parent="13" name="subject_workload_exercises">
+      <Position>4</Position>
+      <Comment>Хорариум часове за упражнения</Comment>
+      <DataType>smallint(5) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="58" parent="13" name="subject_name_UNIQUE">
+      <ColNames>subject_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="59" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>subject_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="60" parent="13" name="subject_name_UNIQUE">
+      <ColNames>subject_name</ColNames>
+      <UnderlyingIndexName>subject_name_UNIQUE</UnderlyingIndexName>
+    </key>
+    <column id="61" parent="14" name="user_id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="62" parent="14" name="user_name">
+      <Position>2</Position>
+      <Comment>Потребителско име</Comment>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="63" parent="14" name="user_fname">
+      <Position>3</Position>
+      <Comment>Собствено име на потребителя</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="64" parent="14" name="user_lname">
+      <Position>4</Position>
+      <Comment>Фамиля на потребителя</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="65" parent="14" name="user_email">
+      <Position>5</Position>
+      <Comment>E-mail адрес на потребителя</Comment>
+      <DataType>varchar(64)|0</DataType>
+    </column>
+    <column id="66" parent="14" name="user_password">
+      <Position>6</Position>
+      <Comment>SHA-1 hash на паролата</Comment>
+      <DataType>char(40)|0</DataType>
+    </column>
+    <index id="67" parent="14" name="user_email_UNIQUE">
+      <ColNames>user_email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="68" parent="14" name="user_name_UNIQUE">
+      <ColNames>user_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="69" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="70" parent="14" name="user_name_UNIQUE">
+      <ColNames>user_name</ColNames>
+      <UnderlyingIndexName>user_name_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="71" parent="14" name="user_email_UNIQUE">
+      <ColNames>user_email</ColNames>
+      <UnderlyingIndexName>user_email_UNIQUE</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
